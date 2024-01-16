@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: touch thing.txt
-      - run: "'Hello' > thing.txt"
+      - run: "Hello > thing.txt"
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
