@@ -10,8 +10,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: touch thing.txt
-      - run: "Hello > thing.txt"
+      - name: Write File
+        uses: DamianReeves/write-file-action@v1.2
+        with:
+          path: thing.txt
+          contents: "Hello"
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
