@@ -15,5 +15,5 @@ jobs:
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
-          artifacts: "thing.txt"
+          artifacts: "6.06-i386.squashfs"
           tag: "6.06"
