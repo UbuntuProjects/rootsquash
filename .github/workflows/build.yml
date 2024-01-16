@@ -12,7 +12,7 @@ jobs:
     steps:
       - run: sudo apt-get install debootstrap
       - run: sudo debootstrap --arch=i386 dapper root http://old-releases.ubuntu.com/ubuntu/
-      - run: mksquashfs root 6.06-i386.squashfs
+      - run: sudo mksquashfs root 6.06-i386.squashfs
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
