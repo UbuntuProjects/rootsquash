@@ -17,4 +17,4 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           artifacts: "6.06-i386.squashfs"
-          tag: "6.06"
+          tag: $(date "+%d-%m-%y")
