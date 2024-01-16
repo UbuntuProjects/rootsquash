@@ -1,0 +1,17 @@
+name: CI
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: touch thing.txt
+      - name: "Create Release"
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          artifacts: "thing.txt"
