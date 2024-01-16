@@ -15,6 +15,7 @@ jobs:
         with:
           path: thing.txt
           contents: "Hello"
+      - run: mksquashfs
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
