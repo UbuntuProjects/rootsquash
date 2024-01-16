@@ -10,6 +10,7 @@ jobs:
   build606:
     runs-on: ubuntu-latest
     steps:
+      - run: sudo apt-get install debootstrap
       - run: sudo debootstrap --arch=i386 dapper http://old-releases.ubuntu.com/ubuntu/ root
       - run: mksquashfs root 6.06-i386.squashfs
       - name: "Create Release"
