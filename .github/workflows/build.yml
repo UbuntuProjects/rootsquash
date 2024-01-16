@@ -1,4 +1,4 @@
-name: CI
+name: Build
 on:
   push:
     branches: [ "main" ]
@@ -7,15 +7,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  build606:
     runs-on: ubuntu-latest
     steps:
-      - name: Write File
-        uses: DamianReeves/write-file-action@v1.2
-        with:
-          path: thing.txt
-          contents: "Hello"
-      - run: mksquashfs
+      - run: sudo debootstrap --arch=i386 dapper http://old-releases.ubuntu.com/ubuntu/ root
+      - run: mksquashfs root 6.06-i386.squashfs
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
