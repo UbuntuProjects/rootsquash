@@ -11,7 +11,6 @@ jobs:
   build606:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate tag
       - run: date_formatted=$(date "+%Y-%m-%d") && echo "TAG_NAME=$date_formatted" >> $GITHUB_OUTPUT
       - run: sudo apt-get install debootstrap
       - run: sudo debootstrap --arch=i386 dapper root http://old-releases.ubuntu.com/ubuntu/
@@ -20,4 +19,4 @@ jobs:
         uses: ncipollo/release-action@v1.13.0
         with:
           artifacts: "6.06-i386.squashfs"
-          tag: ${{env.date}}
+          tag: ${{ steps.generate_tag.outputs.TAG_NAME }}
