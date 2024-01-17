@@ -11,11 +11,16 @@ jobs:
     steps:
       - name: Generate Tag
         run: echo "TAG_NAME=$(date "+%Y-%m-%d")" >> $GITHUB_ENV
-      - run: sudo apt-get install debootstrap
-      - run: sudo debootstrap --arch=i386 dapper root http://old-releases.ubuntu.com/ubuntu/
-      - run: sudo mksquashfs root 6.06-i386.squashfs
+      - run: sudo apt-get install debootstrap p7zip-full
+      - run: sudo debootstrap --arch=i386 dapper i386 http://old-releases.ubuntu.com/ubuntu/
+      - run: sudo mksquashfs i386 i386.squashfs
+      - run: sudo debootstrap --arch=amd64 dapper amd64 http://old-releases.ubuntu.com/ubuntu/
+      - run: sudo mksquashfs amd64 amd64.squashfs
+      - run: sudo debootstrap --arch=powerpc dapper powerpc http://old-releases.ubuntu.com/ubuntu/
+      - run: sudo mksquashfs powerpc powerpc.squashfs
+      - run: 7z a -mx9 -md512m -mfb273 -mmt=off -sdel 6.06.7z i386.squashfs amd64.squashfs powerpc.squashfs
       - name: "Create Release"
         uses: ncipollo/release-action@v1.13.0
         with:
-          artifacts: "6.06-i386.squashfs"
+          artifacts: "6.06.7z"
           tag: ${{ env.TAG_NAME }}
